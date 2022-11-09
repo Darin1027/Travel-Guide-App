@@ -26,7 +26,7 @@ $.ajax({
       console.log(weather)
     })
     .then(function(){
-      for (var i = 0; i < weather.list.length; i+1){
+      for (var i = 0; i < weather.list.length; i++){
       var iconcode = weather.list[i].weather[0].icon;
       var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
       console.log(iconurl)
