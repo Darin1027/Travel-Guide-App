@@ -76,7 +76,7 @@ getActivities();
 // Create element for state value input
 stateEl = $("#state");
 
-$("#state").autocomplete({
+$("#activity").autocomplete({
   source: activitiesArr,
 });
 
