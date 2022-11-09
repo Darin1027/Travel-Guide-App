@@ -1,25 +1,3 @@
-.dropDownContainer{
-    
-}
-
-.stateDropDown{
-
-}
-.activityDropDown{
-
-}
-.resultsContainer{
-
-}
-.resultsCard{
-
-}
-.cardHeader{
-
-}
-.cardList{
-
-}
-.weatherForecast{
-
+body{
+    background-color: rgb(13, 48, 13);
 }
