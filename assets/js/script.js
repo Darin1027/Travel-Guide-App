@@ -44,6 +44,8 @@ $.ajax({
       });
   });
 
+//Ryans API Work here
+
 // Create variable to store activities in an array and use fetch function to populate array with all available park activities. Array will then be used to populate dropdown activity form. Run getActivities function to populate dropdown menu.
 var activitiesArr = [];
 var activitiesID = [];
