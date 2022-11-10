@@ -44,7 +44,108 @@ $.ajax({
       });
   });
 
-//Ryans API Work here
+//Ryans API Work here (line 150)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Create variable to store activities in an array and use fetch function to populate array with all available park activities. Array will then be used to populate dropdown activity form. Run getActivities function to populate dropdown menu.
 var activitiesArr = [];
@@ -200,12 +301,12 @@ optionEl.each(function (i) {
   optionEl.eq(i).data("value", i);
 });
 
-activityEl.each(function (i) {
-  activityEl.eq(i).data("code", activitiesArr[i]);
-});
+// activityEl.each(function (i) {
+//   activityEl.eq(i).data("code", activitiesArr[i]);
+// });
 
-console.log(optionEl.eq(1));
-console.log(activityEl.eq(1));
+// console.log(optionEl.eq(1));
+// console.log(activityEl.eq(1));
 
 var buttonEl = $(".btn");
 
