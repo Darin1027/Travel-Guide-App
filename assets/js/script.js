@@ -1,22 +1,22 @@
-var state = "Denver"
-var stateUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + state + "&appid=7011eb953ba72b23086bac978cab66f6"
+var state = "Denver";
+var stateUrl =
+  "http://api.openweathermap.org/geo/1.0/direct?q=" +
+  state +
+  "&appid=7011eb953ba72b23086bac978cab66f6";
 
 $.ajax({
   url: stateUrl,
   method: "GET",
-}).then(function (response) {
-  var lat = response[0].lat.toString()
-  var lon = response[0].lon.toString()
-  data = {
-    lat: lat,
-    lon: lon,
-  }
-  return data;
 })
-
-
-
-
+  .then(function (response) {
+    var lat = response[0].lat.toString();
+    var lon = response[0].lon.toString();
+    data = {
+      lat: lat,
+      lon: lon,
+    };
+    return data;
+  })
 
 .then(function () {
   var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + data.lat + "&lon=" + data.lon + "&appid=7011eb953ba72b23086bac978cab66f6"
