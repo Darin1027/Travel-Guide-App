@@ -71,7 +71,7 @@ function getActivities() {
       }
     });
 }
-console.log(activitiesID);
+
 getActivities();
 
 // Create array for all 2-letter state codes
@@ -198,7 +198,12 @@ optionEl.each(function (i) {
   optionEl.eq(i).data("value", i);
 });
 
-console.log(optionEl.eq(1).data("value"));
+activityEl.each(function (i) {
+  activityEl.eq(i).data("code", activitiesArr[i]);
+});
+
+console.log(optionEl.eq(1));
+console.log(activityEl.eq(1));
 
 var buttonEl = $(".btn");
 
