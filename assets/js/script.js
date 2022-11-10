@@ -14,6 +14,10 @@ $.ajax({
   return data;
 })
 
+
+
+
+
 .then(function () {
   var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + data.lat + "&lon=" + data.lon + "&appid=7011eb953ba72b23086bac978cab66f6"
   $.ajax({
@@ -35,3 +39,6 @@ $.ajax({
     })
 })
 
+
+
+//Ryans API Work here
