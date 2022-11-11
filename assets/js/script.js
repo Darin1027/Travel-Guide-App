@@ -46,6 +46,107 @@ $.ajax({
 
 //Ryans API Work here (line 150)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Create variable to store activities in an array and use fetch function to populate array with all available park activities. Each array is then stored to localStorage.
 var activitiesArr = [];
 var activitiesID = [];
@@ -244,7 +345,8 @@ buttonEl.click(function (event) {
       console.log(stateArr);
       statePark(stateArr);
       parkData(urlArr);
-    });
+      populateCards();
+    })
 });
 
 const urlArr = [];
@@ -277,4 +379,13 @@ function parkData(urlArr) {
         localStorage.setItem("Park", JSON.stringify(parksInfo));
       });
   }
+}
+
+
+
+function populateCards() {
+  var storedParks = JSON.parse(localStorage.getItem("Park"));
+  console.log(storedParks)
+  // var parkImageEl = $(".img-fluid")
+  // $(".img-fluid:eq(0)").attr("src", storedParks[0].image[0].url)
 }
