@@ -54,29 +54,24 @@ button:hover {
 }
 
 .weather {
-background-color: gray;
-height: 42px;
-width: 43px;
-border-radius: 40px;
-
-
-
+  height: 42px;
+  width: 43px;
+  border-radius: 40px;
 }
 .weatherContainer{
-    display: flex;
-    flex-direction: column;
-    width: 15%;
-
-
+  display: flex;
+  flex-direction: column;
+  width: 15%;
 }
 .weatherBox {
-
-display: flex;
-justify-content: space-between;
-padding: 0%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0%;
 }
-    .weatherContainer p {
-        height: 2%;
-        
+.weatherContainer p {
+  height: 2%;
+}
 
-    }
+/* .day1Img{
+  background-image: url("http://openweathermap.org/img/w/02d.png");
+} */
