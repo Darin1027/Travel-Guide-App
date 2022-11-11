@@ -1,28 +1,33 @@
-var state = "Denver"
-var stateUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + state + "&appid=7011eb953ba72b23086bac978cab66f6"
+var state = "Denver";
+var stateUrl =
+  "http://api.openweathermap.org/geo/1.0/direct?q=" +
+  state +
+  "&appid=7011eb953ba72b23086bac978cab66f6";
 
 $.ajax({
   url: stateUrl,
   method: "GET",
-}).then(function (response) {
-  var lat = response[0].lat.toString()
-  var lon = response[0].lon.toString()
-  data = {
-    lat: lat,
-    lon: lon,
-  }
-  return data;
 })
+  .then(function (response) {
+    var lat = response[0].lat.toString();
+    var lon = response[0].lon.toString();
+    data = {
+      lat: lat,
+      lon: lon,
+    };
+    return data;
+  })
 
-
-
-
-
-.then(function () {
-  var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + data.lat + "&lon=" + data.lon + "&appid=7011eb953ba72b23086bac978cab66f6"
-  $.ajax({
-    url: coordinateUrl,
-    method: "GET",
+  .then(function () {
+    var coordinateUrl =
+      "https://api.openweathermap.org/data/2.5/forecast?lat=" +
+      data.lat +
+      "&lon=" +
+      data.lon +
+      "&appid=7011eb953ba72b23086bac978cab66f6";
+    $.ajax({
+      url: coordinateUrl,
+      method: "GET",
     })
       .then(function (response) {
         weather = response;
@@ -41,108 +46,7 @@ $.ajax({
 
 //Ryans API Work here (line 150)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Create variable to store activities in an array and use fetch function to populate array with all available park activities. Array will then be used to populate dropdown activity form. Run getActivities function to populate dropdown menu.
+// Create variable to store activities in an array and use fetch function to populate array with all available park activities. Each array is then stored to localStorage.
 var activitiesArr = [];
 var activitiesID = [];
 function getActivities() {
@@ -158,19 +62,30 @@ function getActivities() {
         activitiesArr.push(data.data[i].name);
         activitiesID.push(data.data[i].id);
       }
-      return activitiesArr, activitiesID;
     })
     .then(function () {
-      for (var i = 0; i < activitiesArr.length; i++) {
-        activityEl = $("#activityType");
-        var optionEl = $("<option>");
-        optionEl.text(activitiesArr[i]);
-        optionEl.appendTo(activityEl);
-      }
+      localStorage.setItem("Activities", JSON.stringify(activitiesArr));
+      localStorage.setItem("Activity ID", JSON.stringify(activitiesID));
     });
 }
 
 getActivities();
+
+// Array for stored activity names and IDs created
+var storedActivities = JSON.parse(localStorage.getItem("Activities"));
+var storedActivityID = JSON.parse(localStorage.getItem("Activity ID"));
+
+// Use DOM manipulation to populate the dropdown list for the activity selection
+var activityEl = $("#activityType");
+
+for (var i = 0; i < storedActivities.length; i++) {
+  var optionEl = $("<option>");
+  optionEl.addClass("activityOption");
+  optionEl.text(storedActivities[i]);
+  optionEl.appendTo(activityEl);
+  var activityOptionEl = $(".activityOption");
+  activityOptionEl.eq(i).data("code", storedActivityID[i]);
+}
 
 // Create array for all 2-letter state codes
 var stateLetters = [
@@ -280,8 +195,8 @@ var stateWritten = [
   "Wyoming",
 ];
 
+// DOM manipulation to create dropdown for state selection
 stateEl = $("#stateSelected");
-activityEl = $("#activityType");
 
 for (var i = 0; i < stateWritten.length; i++) {
   var optionDiv = $("<option>");
@@ -290,32 +205,30 @@ for (var i = 0; i < stateWritten.length; i++) {
   optionDiv.appendTo(stateEl);
 }
 
-var optionEl = $(".stateOption");
+var stateOptionEl = $(".stateOption");
 
-optionEl.each(function (i) {
-  optionEl.eq(i).data("value", i);
+stateOptionEl.each(function (i) {
+  stateOptionEl.eq(i).data("value", i);
 });
 
-// activityEl.each(function (i) {
-//   activityEl.eq(i).data("code", activitiesArr[i]);
-// });
-
-// console.log(optionEl.eq(1));
-// console.log(activityEl.eq(1));
-
+// Create event listener function to perform search
 var buttonEl = $(".btn");
+
+stateArr = [];
 
 buttonEl.click(function (event) {
   event.preventDefault();
+  var activitySel = $("#activityType option:selected");
+  var activityCode = activitySel.data("code");
   var stateSel = $("#stateSelected option:selected");
   var index = stateSel.data("value");
   var requestState = stateLetters[index];
   console.log(requestState);
-  console.log(activityEl.val());
+  console.log(activityCode);
 
   var requestUrl =
-    "https://developer.nps.gov/api/v1/activities/parks?stateCode=" +
-    requestState +
+    "https://developer.nps.gov/api/v1/activities/parks?id=" +
+    activityCode +
     "&api_key=IT8Dh7gamo7lKVqLK6OI3dDyieIMk26ZheCcKLLB";
   fetch(requestUrl)
     .then(function (response) {
@@ -323,17 +236,45 @@ buttonEl.click(function (event) {
     })
     .then(function (data) {
       console.log(data);
+      for (var i = 0; i < data.data[0].parks.length; i++) {
+        if (data.data[0].parks[i].states.includes(requestState)) {
+          stateArr.push(data.data[0].parks[i].parkCode);
+        }
+      }
+      console.log(stateArr);
+      statePark(stateArr);
+      parkData(urlArr);
     });
 });
 
-// getStates;
+const urlArr = [];
+const parksInfo = [];
 
-// function getApi() {
-//   var requestUrl =
-//     "https://developer.nps.gov/api/v1/parks?stateCode=" +
-//     requestState +
-//     "&api_key=IT8Dh7gamo7lKVqLK6OI3dDyieIMk26ZheCcKLLB";
-// }
+function statePark(stateArr) {
+  for (var i = 0; i < stateArr.length; i++) {
+    var parksCode = stateArr[i];
+    var query = "parkCode=";
+    var parksCode = query.concat(parksCode);
+    var stateParkURL =
+      "https://developer.nps.gov/api/v1/parks?" +
+      parksCode +
+      "&api_key=IT8Dh7gamo7lKVqLK6OI3dDyieIMk26ZheCcKLLB";
+    urlArr.push(stateParkURL);
+  }
+  return urlArr;
+}
 
-// getApi();
-// console.log(data.data[0].activities[0].name);
+function parkData(urlArr) {
+  for (var i = 0; i < urlArr.length; i++) {
+    fetch(urlArr[i])
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (parks) {
+        parksInfo.push(parks.data[0]);
+      })
+      .then(function () {
+        localStorage.setItem("Park", JSON.stringify(parksInfo));
+      });
+  }
+}
