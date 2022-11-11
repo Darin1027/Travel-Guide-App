@@ -63,6 +63,9 @@ button:hover {
 
 .weatherContainer p {
     height: 2%;
+    font-size: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .buttonContainer{
@@ -81,3 +84,4 @@ button:hover {
 .footerContainer{
     padding: 55px;
 }
+
