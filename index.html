@@ -20,6 +20,7 @@
     />
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
+
   <header>
     <div class="overlay">
       <h1>National Park Activy Finder</h1>
@@ -30,7 +31,7 @@
         nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur
         ab.
       </p>
-      <br />
+      <br/>
     </div>
   </header>
 
@@ -54,10 +55,38 @@
             </ul>
             <div class="card-body">
               <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
+            </div>
+           <div class="card-body weatherBox">
+              <div class="weatherContainer">
+                <p>Today</p>
+                <div class="weather"></div>
+              </div>
+              <div class="weatherContainer">
+                <p>Today</p>
+                <div class="weather"></div>
+              </div>
+              <div class="weatherContainer">
+                <p>Today</p>
+                <div class="weather"></div>
+              </div>
+              <div class="weatherContainer">
+                <p>Today</p>
+                <div class="weather"></div>
+              </div>
+              <div class="weatherContainer">
+                <p>Today</p>
+                <div class="weather"></div>
+              </div>
             </div>
           </div>
         </div>
+        
+        
+        
+        
+        
+        
+        
         <div class="col">
           <div class="card" style="width: 18rem">
             <img src="..." class="card-img-top" alt="..." />
@@ -123,19 +152,216 @@
         </div>
       </div>
     </div>
+    <!-- ! Below is Darins code (lines 12-68) for the bottom half of app -->
+    <section id="" class="container text-center">
+      <!-- below is div for state drop down -->
+      <div class="row">
+        <div class="col">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              State
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item active" href="#">*State*</a></li>
+              <li><a class="dropdown-item" href="#">*State*</a></li>
+              <li><a class="dropdown-item" href="#">*State*</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- below is div for activity drop down -->
+        <div class="col">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Activities
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item active" href="#">Activity</a></li>
+              <li><a class="dropdown-item" href="#">Activity</a></li>
+              <li><a class="dropdown-item" href="#">Activity</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- below is 4 containers to store the users desired results in card format -->
+    <section id="" class="container text-center">
+      <div class="row row-cols-2">
+        <div class="col">
+          <div class="card text-bg-dark border-warning mb-3">
+            <img
+              src="./assets/StepBros1.jpeg"
+              class="img-fluid card-img-top"
+              alt="Image of a Park"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Park Name Here!</h5>
+              <p class="card-text">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut
+                maxime harum ad veniam sapiente ut cumque, enim ducimus! Natus
+                quia distinctio debitis omnis sint. Alias!
+              </p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 1
+              </li>
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 2
+              </li>
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 3
+              </li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Link to weather???</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card text-bg-dark border-warning mb-3">
+            <img
+              src="./assets/StepBros2.jpeg"
+              class="img-fluid card-img-top"
+              alt="Image of a Park"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Park Name Here!</h5>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae,
+                odio eligendi exercitationem alias, deserunt saepe accusantium
+                cum quos facere adipisci earum totam ipsam facilis corporis.
+              </p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li
+                class="list-group-item text-bg-dark text-bg-dark border-warning"
+              >
+                Activity 1
+              </li>
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 2
+              </li>
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 3
+              </li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Link to weather???</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card text-bg-dark border-warning mb-3">
+            <img
+              src="./assets/StepBros3.jpeg"
+              class="img-fluid card-img-top"
+              alt="Image of a Park"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Park Name Here!</h5>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Commodi, eum et! Modi et eveniet reiciendis assumenda quibusdam
+                reprehenderit repudiandae, incidunt architecto! Sapiente aliquid
+                dignissimos corrupti?
+              </p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 1
+              </li>
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 2
+              </li>
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 3
+              </li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Link to weather???</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card text-bg-dark border-warning mb-3">
+            <img
+              src="assets/StepBros4.jpeg"
+              class="img-fluid card-img-top"
+              alt="Image of a Park"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Park Name Here!</h5>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Eveniet perspiciatis, cupiditate illo veniam eaque corporis
+                consequuntur amet nesciunt tempore, accusantium nostrum, ipsa
+                obcaecati possimus voluptatum.
+              </p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 1
+              </li>
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 2
+              </li>
+              <li class="list-group-item text-bg-dark border-warning">
+                Activity 3
+              </li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Link to weather???</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ryan form  -->
+    <form>
+      <label for="state">State:</label>
+      <select id="stateSelected" name="state">
+        <option disabled selected>Please pick one</option>
+      </select>
+      <label for="activity">Activity:</label>
+      <select id="activityType" name="activity">
+        <option disabled selected>Please pick one</option>
+      </select>
+      <input class="btn" type="button" value="Submit"></button>
+    </form>
+    <!-- Ryan form  -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
       integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
       integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

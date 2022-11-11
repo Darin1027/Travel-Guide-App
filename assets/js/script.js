@@ -1,22 +1,22 @@
-var state = "Denver";
-var stateUrl =
-  "http://api.openweathermap.org/geo/1.0/direct?q=" +
-  state +
-  "&appid=7011eb953ba72b23086bac978cab66f6";
+var state = "Denver"
+var stateUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + state + "&appid=7011eb953ba72b23086bac978cab66f6"
 
 $.ajax({
   url: stateUrl,
   method: "GET",
+}).then(function (response) {
+  var lat = response[0].lat.toString()
+  var lon = response[0].lon.toString()
+  data = {
+    lat: lat,
+    lon: lon,
+  }
+  return data;
 })
-  .then(function (response) {
-    var lat = response[0].lat.toString();
-    var lon = response[0].lon.toString();
-    data = {
-      lat: lat,
-      lon: lon,
-    };
-    return data;
-  })
+
+
+
+
 
 .then(function () {
   var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + data.lat + "&lon=" + data.lon + "&appid=7011eb953ba72b23086bac978cab66f6"
@@ -44,6 +44,12 @@ function displayWeather() {
 
 
 
+// function getApi() {
+//   var requestUrl =
+//     "https://developer.nps.gov/api/v1/parks?stateCode=" +
+//     requestState +
+//     "&api_key=IT8Dh7gamo7lKVqLK6OI3dDyieIMk26ZheCcKLLB";
+// }
 
-
-//Ryans API Work here
+// getApi();
+// console.log(data.data[0].activities[0].name);
