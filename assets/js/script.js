@@ -88,7 +88,7 @@ function displayWeather() {
     var iconcode = weather.list[i].weather[0].icon;
     var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
     weatherImgArr.push(iconurl)
-    console.log(weatherImgArr)
+    console.log(iconurl)
     // console.log(iconurl)
     day1Img.attr("style", "background-image: url(" + weatherImgArr[0] + ")")
     day2Img.attr("style", "background-image: url(" + weatherImgArr[8] + ")")
