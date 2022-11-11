@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-color: rgb(117, 117, 117);
 }
 
 body {
@@ -17,7 +16,6 @@ header {
     position: relative;
     overflow: hidden;
     border-radius: 0 0 85% 85% / 30%;  
-
 }
 
 .overlay {
@@ -41,37 +39,43 @@ p {
     margin-bottom: 30px;
 }
 
-
-
-
 button:hover {
     cursor: pointer;
 }
 
 .weather {
-background-color: gray;
-height: 42px;
-width: 43px;
-border-radius: 40px;
-
-
-
+    background-color: gray;
+    height: 42px;
+    width: 43px;
+    border-radius: 40px;
 }
+
 .weatherContainer{
     display: flex;
     flex-direction: column;
     width: 15%;
-
-
 }
+
 .weatherBox {
-
-display: flex;
-justify-content: space-between;
-padding: 0%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0%;
 }
-    .weatherContainer p {
-        height: 2%;
-        
 
-    }
+.weatherContainer p {
+    height: 2%;
+}
+
+.buttonContainer{
+    padding: 100px;
+}
+
+.btn {
+    margin-top: 15px;
+    margin-bottom: -25px;
+}
+
+.form-select{
+    margin-bottom: 35px;
+
+}
