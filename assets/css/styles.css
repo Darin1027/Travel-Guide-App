@@ -57,6 +57,7 @@ button:hover {
   height: 42px;
   width: 43px;
   border-radius: 40px;
+  
 }
 .weatherContainer{
   display: flex;
@@ -70,6 +71,7 @@ button:hover {
 }
 .weatherContainer p {
   height: 2%;
+
 }
 
 /* .day1Img{
