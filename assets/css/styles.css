@@ -70,8 +70,19 @@ button:hover {
 }
 .weatherContainer p {
   height: 2%;
+  font-size: 10px;
+  margin-bottom: 15px;
 }
 
 /* .day1Img{
   background-image: url("http://openweathermap.org/img/w/02d.png");
 } */
+
+
+
+
+
+
+
+
+
