@@ -9,7 +9,6 @@ body {
 }
 
 header {
-
     width: 100%;
     height: auto;
     background-size: cover;
@@ -17,7 +16,6 @@ header {
     position: relative;
     overflow: hidden;
     border-radius: 0 0 85% 85% / 30%;  
-
 }
 
 .overlay {
@@ -27,11 +25,6 @@ header {
     color: #FFF;
     text-shadow: 1px 1px 1px #333;
     background-image: linear-gradient(135deg, #1ccf3dbf 10%, #8483cb88 100%);
-  
-
-
-
-
 }
 
 h1 {
@@ -46,9 +39,6 @@ p {
     margin-bottom: 30px;
 }
 
-
-
-
 button:hover {
     cursor: pointer;
 }
@@ -59,21 +49,42 @@ button:hover {
   border-radius: 40px;
   
 }
+
 .weatherContainer{
   display: flex;
   flex-direction: column;
   width: 15%;
 }
+
 .weatherBox {
   display: flex;
   justify-content: space-between;
   padding: 0%;
 }
+
 .weatherContainer p {
   height: 2%;
 
+    height: 2%;
+    font-size: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
-/* .day1Img{
-  background-image: url("http://openweathermap.org/img/w/02d.png");
-} */
+.buttonContainer{
+    padding: 100px;
+}
+
+.btn {
+    margin-top: 15px;
+    margin-bottom: -25px;
+}
+
+.form-select{
+    margin-bottom: 35px;
+}
+
+.footerContainer{
+    padding: 55px;
+}
+
