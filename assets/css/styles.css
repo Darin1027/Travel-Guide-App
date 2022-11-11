@@ -77,5 +77,8 @@ button:hover {
 
 .form-select{
     margin-bottom: 35px;
+}
 
+.footerContainer{
+    padding: 55px;
 }
