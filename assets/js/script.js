@@ -345,8 +345,9 @@ buttonEl.click(function (event) {
       console.log(stateArr);
       statePark(stateArr);
       parkData(urlArr);
-      populateCards();
+      
     })
+    populateCards();
 });
 
 const urlArr = [];
@@ -384,8 +385,8 @@ function parkData(urlArr) {
 
 
 function populateCards() {
-  var storedParks = JSON.parse(localStorage.getItem("Park"));
-  console.log(storedParks)
-  // var parkImageEl = $(".img-fluid")
-  // $(".img-fluid:eq(0)").attr("src", storedParks[0].image[0].url)
+  const storedParks = JSON.parse(localStorage.getItem("Park"));
+  var parkImageEl = $(".img-fluid")
+  console.log(parkImageEl[0])
+  console.log(storedParks[0].images[0].url)
 }
