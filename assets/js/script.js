@@ -317,6 +317,7 @@ var buttonEl = $(".btn");
 
 stateArr = [];
 
+// After State and Activity are selected, the values for the 2-letter state code and activity ID are stored and then used to search for all parks with the given activity ID the list is then filtered to obtain the park code for each park in the given state that offers the selected activity.
 buttonEl.click(function (event) {
   event.preventDefault();
   var activitySel = $("#activityType option:selected");
@@ -336,22 +337,20 @@ buttonEl.click(function (event) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       for (var i = 0; i < data.data[0].parks.length; i++) {
         if (data.data[0].parks[i].states.includes(requestState)) {
           stateArr.push(data.data[0].parks[i].parkCode);
         }
       }
-      console.log(stateArr);
+      // State park function uses the array of park codes to return a unique url for each park.
       statePark(stateArr);
-      parkData(urlArr);
-      
+      // Each unique park is then loaded in to the loadURLs function to fetch the data for each park and store it in an array which is then used for DOM manipulation
+      loadURLs(urlArr);
     })
-    populateCards();
 });
 
+// statePark function to obtain park codes 
 const urlArr = [];
-const parksInfo = [];
 
 function statePark(stateArr) {
   for (var i = 0; i < stateArr.length; i++) {
@@ -367,26 +366,40 @@ function statePark(stateArr) {
   return urlArr;
 }
 
-function parkData(urlArr) {
-  for (var i = 0; i < urlArr.length; i++) {
-    fetch(urlArr[i])
+// getData function performs a fetch for each park 
+function getData(url) {
+  return new Promise(function (resolve) {
+    fetch(url)
       .then(function (response) {
         return response.json();
       })
-      .then(function (parks) {
-        parksInfo.push(parks.data[0]);
-      })
-      .then(function () {
-        localStorage.setItem("Park", JSON.stringify(parksInfo));
+      .then(function (data) {
+        resolve(data);
       });
+  });
+}
+
+// Given the unique URLs, each URL is fetched for park data and after all data has been fetched, the render function is called
+function loadURLs(urlArr) {
+  let urlRequests = [];
+
+  urlArr.forEach(function (park) {
+    return urlRequests.push(getData(park));
+  });
+
+  Promise.all(urlRequests).then(function (allParksData) {
+    render(allParksData);
+  });
+}
+
+// render function uses the park data for DOM manipulation 
+function render(allParksData) {
+  for (var i = 0; i < urlArr.length; i++) {
+    console.log(allParksData[i].data[0].images[0].url);
   }
 }
 
 
 
-function populateCards() {
-  const storedParks = JSON.parse(localStorage.getItem("Park"));
-  var parkImageEl = $(".img-fluid")
-  console.log(parkImageEl[0])
-  console.log(storedParks[0].images[0].url)
-}
+
+
