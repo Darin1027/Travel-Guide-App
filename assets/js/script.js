@@ -392,11 +392,132 @@ function loadURLs(urlArr) {
   });
 }
 
+//  var searchContainer = $(".row").eq(1);
+//  var colDiv = $("<div>");
+//  colDiv.addClass("col");
+//  colDiv.appendTo(searchContainer);
+//  var cardDiv = $("<div>");
+//  cardDiv.addClass("card");
+//  cardDiv.css("style", "width: 20rem")
+//  cardDiv.appendTo(colDiv);
+//  var imgDiv = $("<img>")
+//  imgDiv.addClass("img-fluid card-img-top")
+//  imgDiv.attr("src", allParksData[i].data[0].images[0].url);
+
+
+
+
 // render function uses the park data for DOM manipulation 
 function render(allParksData) {
-  for (var i = 0; i < urlArr.length; i++) {
-    console.log(allParksData[i].data[0].images[0].url);
-  }
+  console.log(allParksData)
+  for(var i=0;i <urlArr.length; i++) {
+ var searchContainer = $(".row").eq(1);
+ var colDiv = $("<div>");
+ colDiv.addClass("col");
+ colDiv.appendTo(searchContainer);
+ var cardDiv = $("<div>");
+ cardDiv.addClass("card");
+ cardDiv.attr("style", "width: 20rem");
+ cardDiv.appendTo(colDiv);
+ var imgDiv = $("<img>");
+ imgDiv.addClass("img-fluid card-img-top");
+ imgDiv.attr("src", allParksData[i].data[0].images[0].url);
+ imgDiv.appendTo(cardDiv);
+ cardBodyDiv = $("<div>");
+ cardBodyDiv.addClass("card-body");
+ cardBodyDiv.appendTo(cardDiv);
+ headerDiv = $("<h5>");
+ headerDiv.addClass("card-title")
+ headerDiv.text(allParksData[i].data[0].fullName)
+ headerDiv.appendTo(cardBodyDiv);
+ cardTextDiv = $("<p>");
+ cardTextDiv.addClass("card-text");
+ cardTextDiv.text(allParksData[i].data[0].description)
+ cardTextDiv.appendTo(cardBodyDiv);
+ activityHeaderDiv = $("<div>");
+ activityHeaderDiv.addClass("card-body");
+ activityHeaderDiv.appendTo(cardDiv);
+ activityDiv = $("<h5>");
+ activityDiv.addClass("card-title");
+ activityDiv.text("Additional Park Activities:")
+ activityDiv.appendTo(activityHeaderDiv)
+ listEl = $("<ul>")
+ listEl.addClass("list-group list-group-flush");
+ listEl.appendTo(cardDiv);
+ var numActs = allParksData[i].data[0].activities.length;
+ li1= $("<li>");
+ li1.addClass("list-group-item");
+ li1.appendTo(listEl);
+ li1.text(allParksData[i].data[0].activities[Math.floor(Math.random() * numActs)].name);
+ li2 = $("<li>");
+ li2.addClass("list-group-item");
+ li2.appendTo(listEl);
+ li2.text(allParksData[i].data[0].activities[Math.floor(Math.random() * numActs)].name);
+ li3 = $("<li>");
+ li3.addClass("list-group-item");
+ li3.appendTo(listEl);
+ li3.text(
+   allParksData[i].data[0].activities[Math.floor(Math.random() * numActs)].name
+ );
+ linkDiv = $("<div>");
+ linkDiv.addClass("card-body");
+ linkDiv.text("For more park information visit: ")
+ linkDiv.appendTo(cardDiv);
+ urlDiv = $("<a>");
+ urlDiv.addClass("card-link")
+ urlDiv.attr("href", allParksData[i].data[0].url);
+ urlDiv.attr("target", "_blank");
+ urlDiv.text(allParksData[i].data[0].fullName);
+ urlDiv.appendTo(linkDiv);
+ weatherEl = $("<div>");
+ weatherEl.addClass("card-body weatherBox");
+ weatherEl.appendTo(cardDiv);
+ weatherContainer1 = $("<div>");
+ weatherContainer1.addClass("weatherContainer");
+ weatherContainer1.appendTo(weatherEl);
+ weatherP1 = $("<p>");
+ weatherP1.addClass("day1");
+ weatherP1.appendTo(weatherContainer1);
+ weatherImg1 = $("<div>");
+ weatherImg1.addClass("weather day1Img");
+ weatherImg1.appendTo(weatherContainer1);
+ weatherContainer2 = $("<div>");
+ weatherContainer2.addClass("weatherContainer");
+ weatherContainer2.appendTo(weatherEl);
+ weatherP2 = $("<p>");
+ weatherP2.addClass("day1");
+ weatherP2.appendTo(weatherContainer2);
+ weatherImg2 = $("<div>");
+ weatherImg2.addClass("weather day1Img");
+ weatherImg2.appendTo(weatherContainer2);
+ weatherContainer3 = $("<div>");
+ weatherContainer3.addClass("weatherContainer");
+ weatherContainer3.appendTo(weatherEl);
+ weatherP3 = $("<p>");
+ weatherP3.addClass("day1");
+ weatherP3.appendTo(weatherContainer3);
+ weatherImg3 = $("<div>");
+ weatherImg3.addClass("weather day1Img");
+ weatherImg3.appendTo(weatherContainer3);
+ weatherContainer4 = $("<div>");
+ weatherContainer4.addClass("weatherContainer");
+ weatherContainer4.appendTo(weatherEl);
+ weatherP4 = $("<p>");
+ weatherP4.addClass("day1");
+ weatherP4.appendTo(weatherContainer4);
+ weatherImg4 = $("<div>");
+ weatherImg4.addClass("weather day1Img");
+ weatherImg4.appendTo(weatherContainer4);
+ weatherContainer5 = $("<div>");
+ weatherContainer5.addClass("weatherContainer");
+ weatherContainer5.appendTo(weatherEl);
+ weatherP5 = $("<p>");
+ weatherP5.addClass("day1");
+ weatherP5.appendTo(weatherContainer5);
+ weatherImg5 = $("<div>");
+ weatherImg5.addClass("weather day1Img");
+ weatherImg5.appendTo(weatherContainer5);
+  };
 }
 
 
