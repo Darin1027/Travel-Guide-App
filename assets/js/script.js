@@ -1,8 +1,3 @@
-var state = "Denver";
-var stateUrl =
-  "http://api.openweathermap.org/geo/1.0/direct?q=" +
-  state +
-  "&appid=7011eb953ba72b23086bac978cab66f6";
 var day1El = $(".day1")
 var day2El = $(".day2")
 var day3El = $(".day3")
@@ -56,16 +51,16 @@ function displayDay() {
     day5El.text("Wednesday")
   }
 }
-
 displayDay()
 
+var lat = [];
+var long = [];
+var coordinateURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=7011eb953ba72b23086bac978cab66f6"
 $.ajax({
-  url: stateUrl,
+  url: coordinateUrl,
   method: "GET",
 })
   .then(function (response) {
-    var lat = response[0].lat.toString();
-    var lon = response[0].lon.toString();
     data = {
       lat: lat,
       lon: lon,
@@ -86,6 +81,16 @@ $.ajax({
       })
       .then(displayWeather)
     })
+
+  var coordinateURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + data.lat + "&lon=" + data.lon + "&appid=7011eb953ba72b23086bac978cab66f6"
+  $.ajax({
+    url: coordinateURL,
+    method: "GET",
+  })
+  .then(function(response){
+    weatherPark = response;
+    console.log(weatherPark)
+  })
 
 function displayWeather() {
   for (var i = 0; i < weather.list.length; i++){
