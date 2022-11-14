@@ -1,8 +1,3 @@
-// var state = "Denver";
-// var stateUrl =
-//   "http://api.openweathermap.org/geo/1.0/direct?q=" +
-//   state +
-//   "&appid=7011eb953ba72b23086bac978cab66f6";
 var day1El = $(".day1");
 var day2El = $(".day2");
 var day3El = $(".day3");
@@ -59,39 +54,6 @@ function displayDay() {
 
 displayDay();
 
-// $.ajax({
-//   url: stateUrl,
-//   method: "GET",
-// })
-//   .then(function (response) {
-//     var lat = response[0].lat.toString();
-//     var lon = response[0].lon.toString();
-//     data = {
-//       lat: lat,
-//       lon: lon,
-//     };
-//     return data;
-//   })
-
-//   .then(function () {
-//     var coordinateUrl =
-//       "https://api.openweathermap.org/data/2.5/forecast?lat=" +
-//       data.lat +
-//       "&lon=" +
-//       data.lon +
-//       "&appid=7011eb953ba72b23086bac978cab66f6";
-//     $.ajax({
-//       url: coordinateUrl,
-//       method: "GET",
-//     })
-//       .then(function (response) {
-//         weather = response;
-//         //Object Returned
-//         console.log(weather);
-//       })
-//       .then(displayWeather);
-//   });
-
 function displayWeather() {
   for (var i = 0; i < weather.list.length; i++) {
     var iconcode = weather.list[i].weather[0].icon;
@@ -112,7 +74,7 @@ function displayWeather() {
 // Create variable to store activities in an array and use fetch function to populate array with all available park activities. Each array is then stored to localStorage.
 var activitiesArr = [];
 var activitiesID = [];
-var npsKey = "&api_key=qSdrkcrG38qE4jgKFegQA5pppeEuUlg7PfXZ8CTc";
+var npsKey = "&api_key=IT8Dh7gamo7lKVqLK6OI3dDyieIMk26ZheCcKLLB";
 function getActivities() {
   var requestUrl =
     "https://developer.nps.gov/api/v1/activities?limit=45&start=0" + npsKey;
@@ -312,7 +274,7 @@ buttonEl.click(function (event) {
     });
 });
 
-// statePark function to obtain park codes
+// statePark function to obtain park codes and create document elements that do not use parkdata/weather data.
 const urlArr = [];
 
 function statePark(stateArr) {
@@ -323,64 +285,6 @@ function statePark(stateArr) {
     var stateParkURL =
       "https://developer.nps.gov/api/v1/parks?" + parksCode + npsKey;
     urlArr.push(stateParkURL);
-  }
-  return urlArr;
-}
-
-// getData function performs a fetch for each park
-function getData(url) {
-  return new Promise(function (resolve) {
-    fetch(url)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        resolve(data);
-      });
-  });
-}
-
-// Given the unique URLs, each URL is fetched for park data and after all data has been fetched, the render function is called
-function loadURLs(urlArr) {
-  let urlRequests = [];
-
-  urlArr.forEach(function (park) {
-    return urlRequests.push(getData(park));
-  });
-
-  Promise.all(urlRequests).then(function (allParksData) {
-    render(allParksData);
-  });
-}
-
-// render function uses the park data for DOM manipulation
-function render(allParksData) {
-  console.log(allParksData);
-
-  for (var i = 0; i < urlArr.length; i++) {
-    // Weather Data
-    var coordinateURL =
-      "https://api.openweathermap.org/data/2.5/forecast?lat=" +
-      allParksData[i].data[0].latitude +
-      "&lon=" +
-      allParksData[i].data[0].longitude +
-      "&appid=7011eb953ba72b23086bac978cab66f6";
-    $.ajax({
-      url: coordinateURL,
-      method: "GET",
-    })
-      .then(function (response) {
-        weatherPark = response;
-      })
-      .then(function () {
-        for (var i = 0; i < weatherPark.list.length; i++) {
-          var iconcode = weatherPark.list[i].weather[0].icon;
-          var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-          weatherImgArr.push(iconurl);
-        }
-      });
-    // Weather Data
-
     var searchContainer = $(".row").eq(1);
     var colDiv = $("<div>");
     colDiv.addClass("col");
@@ -390,19 +294,16 @@ function render(allParksData) {
     cardDiv.attr("style", "width: 20rem");
     cardDiv.appendTo(colDiv);
     var imgDiv = $("<img>");
-    imgDiv.addClass("img-fluid card-img-top");
-    imgDiv.attr("src", allParksData[i].data[0].images[0].url);
+    imgDiv.addClass("search-img img-fluid card-img-top");
     imgDiv.appendTo(cardDiv);
     cardBodyDiv = $("<div>");
     cardBodyDiv.addClass("card-body");
     cardBodyDiv.appendTo(cardDiv);
     headerDiv = $("<h5>");
-    headerDiv.addClass("card-title");
-    headerDiv.text(allParksData[i].data[0].fullName);
+    headerDiv.addClass("search-title card-title");
     headerDiv.appendTo(cardBodyDiv);
     cardTextDiv = $("<p>");
-    cardTextDiv.addClass("card-text");
-    cardTextDiv.text(allParksData[i].data[0].description);
+    cardTextDiv.addClass("search-text card-text");
     cardTextDiv.appendTo(cardBodyDiv);
     activityHeaderDiv = $("<div>");
     activityHeaderDiv.addClass("card-body");
@@ -414,37 +315,21 @@ function render(allParksData) {
     listEl = $("<ul>");
     listEl.addClass("list-group list-group-flush");
     listEl.appendTo(cardDiv);
-    var numActs = allParksData[i].data[0].activities.length;
     li1 = $("<li>");
-    li1.addClass("list-group-item");
+    li1.addClass("li1 list-group-item");
     li1.appendTo(listEl);
-    li1.text(
-      allParksData[i].data[0].activities[Math.floor(Math.random() * numActs)]
-        .name
-    );
     li2 = $("<li>");
-    li2.addClass("list-group-item");
+    li2.addClass("li2 list-group-item");
     li2.appendTo(listEl);
-    li2.text(
-      allParksData[i].data[0].activities[Math.floor(Math.random() * numActs)]
-        .name
-    );
     li3 = $("<li>");
-    li3.addClass("list-group-item");
+    li3.addClass("li3 list-group-item");
     li3.appendTo(listEl);
-    li3.text(
-      allParksData[i].data[0].activities[Math.floor(Math.random() * numActs)]
-        .name
-    );
     linkDiv = $("<div>");
     linkDiv.addClass("card-body");
     linkDiv.text("For more park information visit: ");
     linkDiv.appendTo(cardDiv);
     urlDiv = $("<a>");
-    urlDiv.addClass("card-link");
-    urlDiv.attr("href", allParksData[i].data[0].url);
-    urlDiv.attr("target", "_blank");
-    urlDiv.text(allParksData[i].data[0].fullName);
+    urlDiv.addClass("search-url card-link");
     urlDiv.appendTo(linkDiv);
     weatherEl = $("<div>");
     weatherEl.addClass("card-body weatherBox");
@@ -456,7 +341,7 @@ function render(allParksData) {
     weatherP1.addClass("day1");
     weatherP1.appendTo(weatherContainer1);
     dayImg1 = $("<div>");
-    dayImg1.addClass("weather day1Img");
+    dayImg1.addClass("search-day1 weather day1Img");
     dayImg1.appendTo(weatherContainer1);
     weatherContainer2 = $("<div>");
     weatherContainer2.addClass("weatherContainer");
@@ -465,7 +350,7 @@ function render(allParksData) {
     weatherP2.addClass("day1");
     weatherP2.appendTo(weatherContainer2);
     dayImg2 = $("<div>");
-    dayImg2.addClass("weather day1Img");
+    dayImg2.addClass("search-day2 weather day1Img");
     dayImg2.appendTo(weatherContainer2);
     weatherContainer3 = $("<div>");
     weatherContainer3.addClass("weatherContainer");
@@ -474,7 +359,7 @@ function render(allParksData) {
     weatherP3.addClass("day1");
     weatherP3.appendTo(weatherContainer3);
     dayImg3 = $("<div>");
-    dayImg3.addClass("weather day1Img");
+    dayImg3.addClass("search-day3 weather day1Img");
     dayImg3.appendTo(weatherContainer3);
     weatherContainer4 = $("<div>");
     weatherContainer4.addClass("weatherContainer");
@@ -483,7 +368,7 @@ function render(allParksData) {
     weatherP4.addClass("day1");
     weatherP4.appendTo(weatherContainer4);
     dayImg4 = $("<div>");
-    dayImg4.addClass("weather day1Img");
+    dayImg4.addClass("search-day4 weather day1Img");
     dayImg4.appendTo(weatherContainer4);
     weatherContainer5 = $("<div>");
     weatherContainer5.addClass("weatherContainer");
@@ -492,13 +377,8 @@ function render(allParksData) {
     weatherP5.addClass("day1");
     weatherP5.appendTo(weatherContainer5);
     dayImg5 = $("<div>");
-    dayImg5.addClass("weather day1Img");
+    dayImg5.addClass("search-day5 weather day1Img");
     dayImg5.appendTo(weatherContainer5);
-    dayImg1.attr("style", "background-image: url(" + weatherImgArr[0] + ")");
-    dayImg2.attr("style", "background-image: url(" + weatherImgArr[8] + ")");
-    dayImg3.attr("style", "background-image: url(" + weatherImgArr[16] + ")");
-    dayImg4.attr("style", "background-image: url(" + weatherImgArr[32] + ")");
-    dayImg5.attr("style", "background-image: url(" + weatherImgArr[39] + ")");
     if (day == 1) {
       weatherP1.text("Monday");
       weatherP2.text("Tuesday");
@@ -536,5 +416,131 @@ function render(allParksData) {
       weatherP4.text("Tuesday");
       weatherP5.text("Wednesday");
     }
+  }
+  return urlArr;
+}
+
+// getData function performs a fetch for each park
+function getData(url) {
+  return new Promise(function (resolve) {
+    fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        resolve(data);
+      });
+  });
+}
+
+// Given the unique URLs, each URL is fetched for park data and after all data has been fetched, the render function is called
+function loadURLs(urlArr) {
+  let urlRequests = [];
+
+  urlArr.forEach(function (park) {
+    return urlRequests.push(getData(park));
+  });
+
+  Promise.all(urlRequests).then(function (allParksData) {
+    render(allParksData);
+    weatherFetch(allParksData);
+  });
+}
+
+// Fetch weather data and apply weather image to each card from the search
+function weatherFetch(allParksData) {
+  let weatherURL = [];
+  for (var i = 0; i < urlArr.length; i++) {
+    var coordinateURL =
+      "https://api.openweathermap.org/data/2.5/forecast?lat=" +
+      allParksData[i].data[0].latitude +
+      "&lon=" +
+      allParksData[i].data[0].longitude +
+      "&appid=7011eb953ba72b23086bac978cab66f6";
+    weatherURL.push(coordinateURL);
+  }
+
+  let weatherData = [];
+
+  weatherURL.forEach(function (location) {
+    return weatherData.push(getData(location));
+  });
+  Promise.all(weatherData).then(function (weatherReturn) {
+    console.log(weatherReturn);
+    var day1ImgEl = $(".search-day1");
+    var day2ImgEl = $(".search-day2");
+    var day3ImgEl = $(".search-day3");
+    var day4ImgEl = $(".search-day4");
+    var day5ImgEl = $(".search-day5");
+
+    for (var i = 0; i < weatherReturn.length; i++) {
+      for (var x = 0; x < weatherReturn[i].list.length; x++) {
+        var iconcode = weatherReturn[i].list[x].weather[0].icon;
+        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        weatherImgArr.push(iconurl);
+      }
+      for (var y = 0; y < weatherReturn.length; y++) {
+        index = 40 * y;
+        day1ImgEl
+          .eq(y)
+          .attr("style", "background-image: url(" + weatherImgArr[index] + ")");
+        day2ImgEl.attr(
+          "style",
+          "background-image: url(" + weatherImgArr[8 + index] + ")"
+        );
+        day3ImgEl.attr(
+          "style",
+          "background-image: url(" + weatherImgArr[16 + index] + ")"
+        );
+        day4ImgEl.attr(
+          "style",
+          "background-image: url(" + weatherImgArr[32 + index] + ")"
+        );
+        day5ImgEl.attr(
+          "style",
+          "background-image: url(" + weatherImgArr[39 + index] + ")"
+        );
+      }
+    }
+  });
+}
+
+// render function uses the park data for DOM manipulation
+function render(allParksData) {
+  console.log(allParksData);
+  var searchImgEl = $(".search-img");
+  var searchTitleEl = $(".search-title");
+  var searchTextEl = $(".search-text");
+  var li1El = $(".li1");
+  var li2El = $(".li2");
+  var li3El = $(".li3");
+  var searchURLEl = $(".search-url");
+  for (var i = 0; i < urlArr.length; i++) {
+    searchImgEl.eq(i).attr("src", allParksData[i].data[0].images[0].url);
+    searchTitleEl.eq(i).text(allParksData[i].data[0].fullName);
+    searchTextEl.eq(i).text(allParksData[i].data[0].description);
+
+    var numActs = allParksData[i].data[0].activities.length;
+    li1El
+      .eq(i)
+      .text(
+        allParksData[i].data[0].activities[Math.floor(Math.random() * numActs)]
+          .name
+      );
+    li2El
+      .eq(i)
+      .text(
+        allParksData[i].data[0].activities[Math.floor(Math.random() * numActs)]
+          .name
+      );
+    li3El
+      .eq(i)
+      .text(
+        allParksData[i].data[0].activities[Math.floor(Math.random() * numActs)]
+          .name
+      );
+    searchURLEl.eq(i).attr("href", allParksData[i].data[0].url);
+    searchURLEl.eq(i).attr("target", "_blank");
+    searchURLEl.eq(i).text(allParksData[i].data[0].fullName);
   }
 }
