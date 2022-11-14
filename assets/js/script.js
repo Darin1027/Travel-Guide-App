@@ -3,14 +3,18 @@ var day2El = $(".day2")
 var day3El = $(".day3")
 var day4El = $(".day4")
 var day5El = $(".day5")
-var day1Img = $(".day1Img")
-var day2Img = $(".day2Img")
-var day3Img = $(".day3Img")
-var day4Img = $(".day4Img")
-var day5Img = $(".day5Img")
-var weatherImgArr = []
+var park1Img1El = $(".park1Img1")
+var park1Img2El = $(".park1Img2")
+var park1Img3El = $(".park1Img3")
+var park1Img4El = $(".park1Img4")
+var park1Img5El = $(".park1Img5")
+var weatherBoxEl1 = $("#weatherBoxOne")
+var weatherBoxEl2 = $("#weatherBoxTwo")
+var weatherBoxEl3 = $("#weatherBoxThree")
+var weatherBoxEl4 = $("#weatherBoxFour")
+var index = 0;
+var weatherBoxElements = [weatherBoxEl1, weatherBoxEl2, weatherBoxEl3, weatherBoxEl4]
 var day = dayjs().day()
-console.log(day)
 
 function displayDay() {
   if (day == 1) {
@@ -53,59 +57,55 @@ function displayDay() {
 }
 displayDay()
 
-var lat = [];
-var long = [];
-var coordinateURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=7011eb953ba72b23086bac978cab66f6"
-$.ajax({
-  url: coordinateUrl,
-  method: "GET",
-})
-  .then(function (response) {
-    data = {
-      lat: lat,
-      lon: lon,
-    };
-    return data;
-  })
+var lat = ["39.0505", "40.3428", "37.7935", "37.2309"];
+var lon = ["108.6921", "105.6836", "105.5931", "108.4618"];
+var coordinateUrlArr = []
 
-  .then(function () {
-    var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + data.lat + "&lon=" + data.lon + "&appid=7011eb953ba72b23086bac978cab66f6"
-    $.ajax({
-      url: coordinateUrl,
-      method: "GET",
-      })
-      .then(function(response) {
-        weather = response;
-        //Object Returned
-        console.log(weather)
-      })
-      .then(displayWeather)
-    })
-
-  var coordinateURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + data.lat + "&lon=" + data.lon + "&appid=7011eb953ba72b23086bac978cab66f6"
-  $.ajax({
-    url: coordinateURL,
-    method: "GET",
-  })
-  .then(function(response){
-    weatherPark = response;
-    console.log(weatherPark)
-  })
-
-function displayWeather() {
-  for (var i = 0; i < weather.list.length; i++){
-    var iconcode = weather.list[i].weather[0].icon;
-    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-    weatherImgArr.push(iconurl)
-    console.log(iconurl)
-    // console.log(iconurl)
-    day1Img.attr("style", "background-image: url(" + weatherImgArr[0] + ")")
-    day2Img.attr("style", "background-image: url(" + weatherImgArr[8] + ")")
-    day3Img.attr("style", "background-image: url(" + weatherImgArr[16] + ")")
-    day4Img.attr("style", "background-image: url(" + weatherImgArr[32] + ")")
-    day5Img.attr("style", "background-image: url(" + weatherImgArr[39] + ")")
-  }
+for (var i = 0; i < lat.length; i++) {
+  var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat[i] + "&lon=" + lon[i] + "&appid=7011eb953ba72b23086bac978cab66f6"
+  coordinateUrlArr = coordinateUrlArr.concat(coordinateUrl)
 }
+
+for (var i = 0; i < coordinateUrlArr.length; i++) {
+  $.ajax({
+    url: coordinateUrlArr[i],
+    method: "GET",
+    complete: function() {
+      index++
+      console.log(index)
+    }
+  }) 
+  .then(function(response){
+      console.log(index)  
+      weather = response
+      var iconUrlArr = []
+      iconUrlArr.push(weather.list[0].weather[0].icon, weather.list[8].weather[0].icon, weather.list[16].weather[0].icon, weather.list[24].weather[0].icon, weather.list[32].weather[0].icon, weather.list[39].weather[0].icon)
+      // var weatherBox = weatherBoxElements[i]
+      console.log(weatherBoxElements[i])
+      displayWeather(iconUrlArr, weatherBoxElements[index])
+    })
+  }
+
+function displayWeather(iconUrlArr, weatherBox) {
+  for (var i = 0; i < iconUrlArr.length; i++){
+    var iconcode = iconUrlArr[i];
+    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    var weatherImg = $("<img />")
+    weatherImg.addClass("weather")
+    weatherImg.attr("src", iconurl)
+    // weatherBoxEl1.append(weatherImg)
+    // weatherDiv.attr("style", "background-image: url(" + iconurl + ")")
+    console.log(weatherBox)
+    weatherBox.append(weatherImg)
+    }
+    // console.log(iconurl)
+    // park1Img1El.attr("style", "background-image: url(" + weatherImgArr[0] + ")")
+    // park1Img2El.attr("style", "background-image: url(" + weatherImgArr[8] + ")")
+    // park1Img3El.attr("style", "background-image: url(" + weatherImgArr[16] + ")")
+    // park1Img4El.attr("style", "background-image: url(" + weatherImgArr[32] + ")")
+    // park1Img5El.attr("style", "background-image: url(" + weatherImgArr[39] + ")")
+  }
+
 
 //Ryans API Work here (line 150)
 
