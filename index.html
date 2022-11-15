@@ -22,25 +22,49 @@
   </head>
 
 <!--? Victors Code below -->
-  <header>
-    <div class="overlay">
-      <h1>National Park Activy Finder</h1>
-      <h3>Reasons for Choosing US</h3>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero nostrum
-        quis, odio veniam itaque ullam debitis qui magnam consequatur ab. Vero
-        nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur
-        ab.
+  <header>    
+    
+    <div class="overlay text-center d-flex flex-column align-items-center">
+      <h1>National Park Activity Finder</h1>
+      <h3>Find a national park by choosing a state and an activity from the dropdown</h3>
+      <p class="col-6">
+        Search results will include National Parks in the selected state that offer the activity that was picked. The results will also include a brief description of the park, 3 random activities that are also available at the park and a currrent weather forecast for each park! Some sample results are provided below for 4 parks that are located in Colorado!
       </p>
       <br />
     </div>
   </header>
+<section id="" class="container text-center">
+      <div class="buttonContainer">
+        <form>
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label="Default select example"
+            id="stateSelected"
+            name="state"
+          >
+            <option disabled selected>Please pick a State</option>
+          </select>
 
+          <!--input for the activities-->
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label="Default select example"
+            id="activityType"
+            name="activity"
+          >
+            <option disabled selected>Please pick an Activity</option>
+          </select>
+          <!-- <input class="btn" type="button" value="Submit"></button> -->
+        </form>
+        <div class="d-grid gap-2">
+        <button class="btn btn-lg btn-primary" type="button">Find your Park</button>
+      </div>
+    </section>
   <body>
     <div class="container text-center">
-      <div class="row">
+      <div id="hidden" class="row">
         <div class="col">
-          <div class="card" style="width: 18rem">
+          <div class="card col" style=>
             <img src="./assets/css/photos/card1StaticImage.jpg" class="card-img-top" alt="Photo of Colorado National Monument" />
             <div class="card-body">
               <h5 class="card-title">Colorado National Monument</h5>
@@ -56,7 +80,7 @@
             <div class="card-body">
               <a href="https://www.nps.gov/colm/index.htm" class="card-link">Colorado National Monument</a>
             </div>
-            <div class="card-body weatherBox">
+            <div class="card-body weatherBox text-nowrap">
               <div class="weatherContainer">
                 <p class= "day1"></p>
                 <div class="weather day1Img"></div>
@@ -82,7 +106,7 @@
         </div>
 
         <div class="col">
-          <div class="card" style="width: 18rem">
+          <div class="card col">
             <img src="./assets/css/photos/card2StaticImage.jpg" class="card-img-top" alt="Image of Rocky Mountain National Park" />
             <div class="card-body">
               <h5 class="card-title">Rocky Mountain National Park</h5>
@@ -98,7 +122,7 @@
             <div class="card-body">
               <a href="https://www.nps.gov/romo/index.htm" class="card-link">Rocky Mountain National Park</a>
             </div>
-            <div class="card-body weatherBox">
+            <div class="card-body weatherBox text-nowrap">
               <div class="weatherContainer">
                 <p class= "day1"></p>
                 <div class="weather day1Img"></div>
@@ -124,7 +148,7 @@
         </div>
 
         <div class="col">
-          <div class="card" style="width: 18rem">
+          <div class="card col">
             <img src="./assets/css/photos/card3StaticImage.jpg" class="card-img-top" alt="Image of Great Sand Dunes National Park & Preserve" />
             <div class="card-body">
               <h5 class="card-title">Great Sand Dunes National Park & Preserve</h5>
@@ -139,7 +163,8 @@
             </ul>
             <div class="card-body">
               <a href="https://www.nps.gov/grsa/index.htm" class="card-link">Great Sand Dunes National Park & Preserve</a>
-              <div class="card-body weatherBox">
+              </div>
+              <div class="card-body weatherBox text-nowrap">
                 <div class="weatherContainer">
                   <p class= "day1"></p>
                   <div class="weather day1Img"></div>
@@ -161,12 +186,11 @@
                   <div class="weather day5Img"></div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
 
         <div class="col">
-          <div class="card" style="width: 18rem">
+          <div class="card col">
             <img src="./assets/css/photos/card4StaticImage.jpg" class="card-img-top" alt="Image of Mesa Verde National Park" />
             <div class="card-body">
               <h5 class="card-title">Mesa Verde National Park</h5>
@@ -182,7 +206,7 @@
             <div class="card-body">
               <a href="https://www.nps.gov/meve/index.htm" class="card-link">Mesa Verde National Park</a>
             </div>
-            <div class="card-body weatherBox">
+            <div class="card-body weatherBox text-nowrap">
               <div class="weatherContainer">
                 <p class= "day1"></p>
                 <div class="weather day1Img"></div>
@@ -213,33 +237,7 @@
 <!-- ! Darins code below -->
 
 <!-- Input fields and Submit button -->
-    <section id="" class="container text-center">
-      <div class="buttonContainer">
-        <form>
-          <select
-            class="form-select form-select-lg mb-3"
-            aria-label="Default select example"
-            id="stateSelected"
-            name="state"
-          >
-            <option disabled selected>Please pick a State</option>
-          </select>
 
-          <!--input for the activities-->
-          <select
-            class="form-select form-select-lg mb-3"
-            aria-label="Default select example"
-            id="activityType"
-            name="activity"
-          >
-            <option disabled selected>Please pick an Activity</option>
-          </select>
-          <!-- <input class="btn" type="button" value="Submit"></button> -->
-        </form>
-        <div class="d-grid gap-2">
-        <button class="btn btn-lg btn-primary" type="button">Find your Park</button>
-      </div>
-    </section>
 
 <!--* below is 4 containers to store the users selected results in card format -->
 
