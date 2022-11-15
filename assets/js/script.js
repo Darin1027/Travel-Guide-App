@@ -242,6 +242,8 @@ stateArr = [];
 // After State and Activity are selected, the values for the 2-letter state code and activity ID are stored and then used to search for all parks with the given activity ID the list is then filtered to obtain the park code for each park in the given state that offers the selected activity.
 buttonEl.click(function (event) {
   event.preventDefault();
+  var hiddenEl = $("#hidden");
+  hiddenEl.hide();
   var activitySel = $("#activityType option:selected");
   var activityCode = activitySel.data("code");
   var stateSel = $("#stateSelected option:selected");

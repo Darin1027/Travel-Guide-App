@@ -22,7 +22,8 @@
   </head>
 
 <!--? Victors Code below -->
-  <header>
+  <header>    
+    
     <div class="overlay text-center d-flex flex-column align-items-center">
       <h1>National Park Activity Finder</h1>
       <h3>Find a national park by choosing a state and an activity from the dropdown</h3>
@@ -32,10 +33,36 @@
       <br />
     </div>
   </header>
+<section id="" class="container text-center">
+      <div class="buttonContainer">
+        <form>
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label="Default select example"
+            id="stateSelected"
+            name="state"
+          >
+            <option disabled selected>Please pick a State</option>
+          </select>
 
+          <!--input for the activities-->
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label="Default select example"
+            id="activityType"
+            name="activity"
+          >
+            <option disabled selected>Please pick an Activity</option>
+          </select>
+          <!-- <input class="btn" type="button" value="Submit"></button> -->
+        </form>
+        <div class="d-grid gap-2">
+        <button class="btn btn-lg btn-primary" type="button">Find your Park</button>
+      </div>
+    </section>
   <body>
     <div class="container text-center">
-      <div class="row">
+      <div id="hidden" class="row">
         <div class="col">
           <div class="card col" style=>
             <img src="./assets/css/photos/card1StaticImage.jpg" class="card-img-top" alt="Photo of Colorado National Monument" />
@@ -210,33 +237,7 @@
 <!-- ! Darins code below -->
 
 <!-- Input fields and Submit button -->
-    <section id="" class="container text-center">
-      <div class="buttonContainer">
-        <form>
-          <select
-            class="form-select form-select-lg mb-3"
-            aria-label="Default select example"
-            id="stateSelected"
-            name="state"
-          >
-            <option disabled selected>Please pick a State</option>
-          </select>
 
-          <!--input for the activities-->
-          <select
-            class="form-select form-select-lg mb-3"
-            aria-label="Default select example"
-            id="activityType"
-            name="activity"
-          >
-            <option disabled selected>Please pick an Activity</option>
-          </select>
-          <!-- <input class="btn" type="button" value="Submit"></button> -->
-        </form>
-        <div class="d-grid gap-2">
-        <button class="btn btn-lg btn-primary" type="button">Find your Park</button>
-      </div>
-    </section>
 
 <!--* below is 4 containers to store the users selected results in card format -->
 
