@@ -477,7 +477,7 @@ function weatherFetch(allParksData) {
     for (var i = 0; i < weatherReturn.length; i++) {
       for (var x = 0; x < weatherReturn[i].list.length; x++) {
         var iconcode = weatherReturn[i].list[x].weather[0].icon;
-        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
         weatherImgArr.push(iconurl);
       }
       for (var y = 0; y < weatherReturn.length; y++) {
@@ -578,7 +578,7 @@ function staticCardWeather() {
     for (var i = 0; i < weatherReturn.length; i++) {
       for (var x = 0; x < weatherReturn[i].list.length; x++) {
         var iconcode = weatherReturn[i].list[x].weather[0].icon;
-        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
         weatherImgArr.push(iconurl);
       }
     }
