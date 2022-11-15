@@ -84,9 +84,17 @@ function getActivities() {
       return response.json();
     })
     .then(function (data) {
+      // Use DOM manipulation to populate the dropdown list for the activity selection
       for (var i = 0; i < data.data.length; i++) {
         activitiesArr.push(data.data[i].name);
         activitiesID.push(data.data[i].id);
+        var activityEl = $("#activityType");
+        var optionEl = $("<option>");
+        optionEl.addClass("activityOption");
+        optionEl.appendTo(activityEl);
+        var activityOptionEl = $(".activityOption");
+        optionEl.text(activitiesArr[i]);
+        activityOptionEl.eq(i).data("code", activitiesID[i]);
       }
     })
     .then(function () {
@@ -100,18 +108,6 @@ getActivities();
 // Array for stored activity names and IDs created
 var storedActivities = JSON.parse(localStorage.getItem("Activities"));
 var storedActivityID = JSON.parse(localStorage.getItem("Activity ID"));
-
-// Use DOM manipulation to populate the dropdown list for the activity selection
-var activityEl = $("#activityType");
-
-for (var i = 0; i < storedActivities.length; i++) {
-  var optionEl = $("<option>");
-  optionEl.addClass("activityOption");
-  optionEl.text(storedActivities[i]);
-  optionEl.appendTo(activityEl);
-  var activityOptionEl = $(".activityOption");
-  activityOptionEl.eq(i).data("code", storedActivityID[i]);
-}
 
 // Create array for all 2-letter state codes
 var stateLetters = [
@@ -290,7 +286,7 @@ function statePark(stateArr) {
     colDiv.addClass("col");
     colDiv.appendTo(searchContainer);
     var cardDiv = $("<div>");
-    cardDiv.addClass("card");
+    cardDiv.addClass("card col");
     cardDiv.attr("style", "width: 20rem");
     cardDiv.appendTo(colDiv);
     var imgDiv = $("<img>");
@@ -332,7 +328,7 @@ function statePark(stateArr) {
     urlDiv.addClass("search-url card-link");
     urlDiv.appendTo(linkDiv);
     weatherEl = $("<div>");
-    weatherEl.addClass("card-body weatherBox");
+    weatherEl.addClass("card-body weatherBox text-nowrap");
     weatherEl.appendTo(cardDiv);
     weatherContainer1 = $("<div>");
     weatherContainer1.addClass("weatherContainer");
