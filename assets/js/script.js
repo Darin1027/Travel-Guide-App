@@ -8,7 +8,6 @@ var day2Img = $(".day2Img");
 var day3Img = $(".day3Img");
 var day4Img = $(".day4Img");
 var day5Img = $(".day5Img");
-var weatherImgArr = [];
 var day = dayjs().day();
 console.log(day);
 
@@ -54,20 +53,22 @@ function displayDay() {
 
 displayDay();
 
-function displayWeather() {
-  for (var i = 0; i < weather.list.length; i++) {
-    var iconcode = weather.list[i].weather[0].icon;
-    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-    weatherImgArr.push(iconurl);
-    console.log(iconurl);
-    // console.log(iconurl)
-    day1Img.attr("style", "background-image: url(" + weatherImgArr[0] + ")");
-    day2Img.attr("style", "background-image: url(" + weatherImgArr[8] + ")");
-    day3Img.attr("style", "background-image: url(" + weatherImgArr[16] + ")");
-    day4Img.attr("style", "background-image: url(" + weatherImgArr[32] + ")");
-    day5Img.attr("style", "background-image: url(" + weatherImgArr[39] + ")");
-  }
-}
+// function displayWeather() {
+//   for (var i = 0; i < weather.list.length; i++) {
+//     var iconcode = weather.list[i].weather[0].icon;
+//     var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+//     weatherImgArr.push(iconurl);
+//     console.log(iconurl);
+//     // console.log(iconurl)
+//     day1Img.attr("style", "background-image: url(" + weatherImgArr[0] + ")");
+//     day2Img.attr("style", "background-image: url(" + weatherImgArr[8] + ")");
+//     day3Img.attr("style", "background-image: url(" + weatherImgArr[16] + ")");
+//     day4Img.attr("style", "background-image: url(" + weatherImgArr[32] + ")");
+//     day5Img.attr("style", "background-image: url(" + weatherImgArr[39] + ")");
+//   }
+// }
+
+staticCardWeather();
 
 //Ryans API Work here (line 150)
 
@@ -469,6 +470,8 @@ function weatherFetch(allParksData) {
     var day4ImgEl = $(".search-day4");
     var day5ImgEl = $(".search-day5");
 
+    const weatherImgArr = [];
+
     for (var i = 0; i < weatherReturn.length; i++) {
       for (var x = 0; x < weatherReturn[i].list.length; x++) {
         var iconcode = weatherReturn[i].list[x].weather[0].icon;
@@ -480,22 +483,30 @@ function weatherFetch(allParksData) {
         day1ImgEl
           .eq(y)
           .attr("style", "background-image: url(" + weatherImgArr[index] + ")");
-        day2ImgEl.attr(
-          "style",
-          "background-image: url(" + weatherImgArr[8 + index] + ")"
-        );
-        day3ImgEl.attr(
-          "style",
-          "background-image: url(" + weatherImgArr[16 + index] + ")"
-        );
-        day4ImgEl.attr(
-          "style",
-          "background-image: url(" + weatherImgArr[32 + index] + ")"
-        );
-        day5ImgEl.attr(
-          "style",
-          "background-image: url(" + weatherImgArr[39 + index] + ")"
-        );
+        day2ImgEl
+          .eq(y)
+          .attr(
+            "style",
+            "background-image: url(" + weatherImgArr[8 + index] + ")"
+          );
+        day3ImgEl
+          .eq(y)
+          .attr(
+            "style",
+            "background-image: url(" + weatherImgArr[16 + index] + ")"
+          );
+        day4ImgEl
+          .eq(y)
+          .attr(
+            "style",
+            "background-image: url(" + weatherImgArr[24 + index] + ")"
+          );
+        day5ImgEl
+          .eq(y)
+          .attr(
+            "style",
+            "background-image: url(" + weatherImgArr[32 + index] + ")"
+          );
       }
     }
   });
@@ -539,4 +550,66 @@ function render(allParksData) {
     searchURLEl.eq(i).attr("target", "_blank");
     searchURLEl.eq(i).text(allParksData[i].data[0].fullName);
   }
+}
+
+function staticCardWeather() {
+  let weatherURL = [];
+  var lat = ["39.0505", "40.3428", "37.7935", "37.2309"];
+  var lon = ["-108.6921", "-105.6836", "-105.5931", "-108.4618"];
+
+  for (var i = 0; i < lat.length; i++) {
+    var coordinateURL =
+      "https://api.openweathermap.org/data/2.5/forecast?lat=" +
+      lat[i] +
+      "&lon=" +
+      lon[i] +
+      "&appid=7011eb953ba72b23086bac978cab66f6";
+    weatherURL.push(coordinateURL);
+  }
+  let weatherData = [];
+
+  weatherURL.forEach(function (location) {
+    return weatherData.push(getData(location));
+  });
+  Promise.all(weatherData).then(function (weatherReturn) {
+    const weatherImgArr = [];
+    for (var i = 0; i < weatherReturn.length; i++) {
+      for (var x = 0; x < weatherReturn[i].list.length; x++) {
+        var iconcode = weatherReturn[i].list[x].weather[0].icon;
+        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        weatherImgArr.push(iconurl);
+      }
+    }
+
+    for (var y = 0; y < weatherReturn.length; y++) {
+      index = 40 * y;
+      day1Img
+        .eq(y)
+        .attr("style", "background-image: url(" + weatherImgArr[index] + ")");
+      day2Img
+        .eq(y)
+        .attr(
+          "style",
+          "background-image: url(" + weatherImgArr[8 + index] + ")"
+        );
+      day3Img
+        .eq(y)
+        .attr(
+          "style",
+          "background-image: url(" + weatherImgArr[16 + index] + ")"
+        );
+      day4Img
+        .eq(y)
+        .attr(
+          "style",
+          "background-image: url(" + weatherImgArr[24 + index] + ")"
+        );
+      day5Img
+        .eq(y)
+        .attr(
+          "style",
+          "background-image: url(" + weatherImgArr[32 + index] + ")"
+        );
+    }
+  });
 }
