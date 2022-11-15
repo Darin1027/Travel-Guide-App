@@ -22,6 +22,8 @@
 
 - _Open the page, select a state and then an activity that interests you and then see the magic!_
 
+## Example image of site!
+
 - ![Image Site](./assets/css/photos/Webpage-screenshot.png)
 
 ## Known Bugs
